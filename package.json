@@ -1,6 +1,6 @@
 {
   "name": "meteor-attack",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "simple 2d space dodging using chem game engine",
   "scripts": {
     "dev": "npm install && chem dev"
