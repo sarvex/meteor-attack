@@ -40,6 +40,7 @@ class Game
     @nextStarAt = @starInterval
 
     @score = 0
+    @fpsLabel = engine.createFpsLabel()
 
     @scoreLabel = new Label "Score: 0",
       batch: @batch
@@ -68,7 +69,6 @@ class Game
   start: ->
     @engine.on('draw', @draw)
     @engine.on('update', @update)
-    @engine.start()
 
   createStar: ->
     sprite = new Sprite @imgStar[randInt(0, 1)],
@@ -167,7 +167,9 @@ class Game
     @spaceToRestartLabel.setVisible(true)
     @ship.setAnimationName('explosion')
     @ship.setFrameIndex(0)
-    @ship.on 'animationend', => @ship.delete()
+    @ship.on 'animationend', =>
+      console.log "animationend"
+      @ship.delete()
 
   draw: (context) =>
     context.fillStyle = '#000000'
@@ -176,10 +178,12 @@ class Game
     @fpsLabel.draw context
 
 
-chem.onReady ->
-  canvas = document.getElementById("game")
-  engine = new Engine(canvas)
-  canvas.focus()
+canvas = document.getElementById("game")
+engine = new Engine(canvas)
+canvas.focus()
+engine.start()
+engine.showLoadProgressBar()
+chem.resources.on 'ready', ->
   game = new Game(engine)
   game.start()
 
