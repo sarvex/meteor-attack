@@ -10,7 +10,7 @@
     "url": "https://github.com/superjoe30/meteor-attack.git"
   },
   "dependencies": {
-    "chem": "~2.0.1",
-    "chem-cli": "~1.0.4"
+    "chem": "~3.0.0",
+    "chem-cli": "~1.0.8"
   }
 }

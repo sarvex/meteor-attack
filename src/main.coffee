@@ -1,6 +1,7 @@
 chem = require 'chem'
 
 {vec2d, Engine, Sprite, Label, Batch, button} = chem
+ani = chem.resources.animations
 
 randInt = (min, max) -> Math.floor(min + Math.random() * (max - min + 1))
 
@@ -20,14 +21,14 @@ class Game
     @meteors = []
     @batch = new Batch()
     @imgStar = [
-      'star_small'
-      'star_big'
+      ani.star_small
+      ani.star_big
     ]
     @imgMeteor = [
-      'meteor_small'
-      'meteor_big'
+      ani.meteor_small
+      ani.meteor_big
     ]
-    @ship = new Sprite 'ship',
+    @ship = new Sprite ani.ship,
       batch: @batch
       pos: vec2d(0, @engine.size.y / 2)
       zOrder: 2
@@ -165,7 +166,7 @@ class Game
     @hadGameOver = true
     @gameOverLabel.setVisible(true)
     @spaceToRestartLabel.setVisible(true)
-    @ship.setAnimationName('explosion')
+    @ship.setAnimation(ani.explosion)
     @ship.setFrameIndex(0)
     @ship.on 'animationend', =>
       console.log "animationend"
